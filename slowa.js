@@ -6,7 +6,7 @@ const http = require("http");
 const sources = [
   {
     sourceId: "https://www.youtube.com/channel/UCLlzlc4XSItHVTcMnrIlv1w",
-    regex: /ewangeliarzop|dominikanie na niedziel/gi,
+    regex: /ewangeliarzop|dominikanie na niedziel|chlebak/gi,
     limit: 10,
   },
   {
