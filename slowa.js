@@ -30,7 +30,7 @@ function ytGet({ sourceId, regex, limit }) {
   });
 }
 
-export const zip = (sources) => {
+const zip = (sources) => {
   let result = [];
   let slice;
 
@@ -86,4 +86,4 @@ exports.serveSlowa = function serveSlowa(req, res) {
       res.setHeader("cache-control", "s-maxage=60");
       res.end(feedXML);
     });
-}
+};
