@@ -6,7 +6,7 @@ const http = require("http");
 
 const sha512 = (str = "") =>
   require("crypto").createHash("sha512").update(str).digest("hex");
-const ME = sha512("me");
+const ME = 'db7361599f96119edeb83e2af268434b85938686b89e6453776971e6426c28c3911055190d03f2752a37c275433ff448974192c4cc18d03c6622f79377974512';
 
 function getVidInfo(vid) {
   return ytdl.getInfo(`https://www.youtube.com/watch?v=${vid}`).then((info) => {
