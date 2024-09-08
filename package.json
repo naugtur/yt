@@ -1,0 +1,23 @@
+{
+  "name": "yt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.14.4",
+    "@lavamoat/preinstall-always-fail": "^2.1.0",
+    "rss": "^1.2.2",
+    "ytpl": "^2.3.0"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false
+    }
+  }
+}
