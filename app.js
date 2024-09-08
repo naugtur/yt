@@ -3,6 +3,7 @@ const ytdl = require("@distube/ytdl-core");
 const ytpl = require("ytpl");
 const RSS = require("rss");
 const http = require("http");
+const { serveSlowa } = require("./slowa");
 
 const sha512 = (str = "") =>
   require("crypto").createHash("sha512").update(str).digest("hex");
@@ -49,7 +50,6 @@ function serveRSS(playlist, req, res) {
       res.end(e.message);
     })
     .then((info) => {
-      console.log(info);
       const items = flatten(info.items);
       let title = "No title found";
       try {
@@ -117,6 +117,9 @@ http
     const vid = u.searchParams.get("v");
     const playlist = u.searchParams.get("list");
     if (playlist) {
+      if (playlist === "slowa") {
+        return serveSlowa(req, res);
+      }
       return serveRSS(playlist, req, res);
     }
     if (vid) {
