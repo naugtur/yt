@@ -4,7 +4,7 @@ const ytpl = require("ytpl");
 const RSS = require("rss");
 const http = require("http");
 
-const sha512 = (str='') =>
+const sha512 = (str = "") =>
   require("crypto").createHash("sha512").update(str).digest("hex");
 const ME = sha512("me");
 
@@ -108,9 +108,9 @@ http
     const u = new URL(req.url, `http://${req.headers.host}`);
     const who = req.headers.authorization;
     if (!who || sha512(who) !== ME) {
-      console.error({req, who});
-      res.setHeader("WWW-Authenticate", "Basic realm=who");
-      res.statusCode = 417;
+      console.error({ req, who });
+      res.setHeader("WWW-Authenticate", `Basic realm="who"`);
+      res.statusCode = 401;
       return res.end(`who? ${who}`);
     }
 
