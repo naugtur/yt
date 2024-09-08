@@ -111,8 +111,8 @@ http
       return serveAudio(vid, req, res);
     }
 
-    res.statusCode = 404;
-    res.end();
+    res.statusCode = 200;
+    res.end('hi');
   })
   .listen(8080, () => {
     console.log("server started");
