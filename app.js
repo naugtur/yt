@@ -108,7 +108,7 @@ http
     const u = new URL(req.url, `http://${req.headers.host}`);
     const who = req.headers.authorization;
     if (!who || sha512(who) !== ME) {
-      console.error(`unauthorized ${who}`);
+      console.error({req, who});
       res.statusCode = 417;
       return res.end(`who? ${who}`);
     }
