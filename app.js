@@ -4,6 +4,10 @@ const ytpl = require("ytpl");
 const RSS = require("rss");
 const http = require("http");
 
+const sha512 = (str) =>
+  require("crypto").createHash("sha512").update(str).digest("hex");
+const ME = sha512("me");
+
 function getVidInfo(vid) {
   return ytdl.getInfo(`https://www.youtube.com/watch?v=${vid}`).then((info) => {
     const formats = ytdl.filterFormats(info.formats, "audioonly");
@@ -102,6 +106,12 @@ http
       return res.end();
     }
     const u = new URL(req.url, `http://${req.headers.host}`);
+    const who = req.headers.authorization;
+    if (!who && sha512(who) !== ME) {
+      res.statusCode = 417;
+      return res.end(`who? ${who}`);
+    }
+
     const vid = u.searchParams.get("v");
     const playlist = u.searchParams.get("list");
     if (playlist) {
@@ -112,7 +122,7 @@ http
     }
 
     res.statusCode = 200;
-    res.end('hi');
+    res.end("hi");
   })
   .listen(8080, () => {
     console.log("server started");
